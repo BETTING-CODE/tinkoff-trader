@@ -1,7 +1,8 @@
 <?php
 header('Content-Type: application/json');
 
-include_once '../vendor/autoload.php';
+include_once './vendor/autoload.php';
+include './constants.php';
 
 use \jamesRUS52\TinkoffInvest\TIClient;
 use \jamesRUS52\TinkoffInvest\TISiteEnum;
