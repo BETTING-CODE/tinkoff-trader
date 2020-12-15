@@ -63,14 +63,20 @@
             .then(data => {
                 const recommedation = document.querySelector('.recommedation')
                 const rec = data[0];
+         
+                let all = rec.hold + 2 * rec.strongBuy + rec.buy + 2 * rec.strongSell + rec.sell
+                let hold = (rec.hold / all * 100).toFixed()
+                let buy = ((2 * rec.strongBuy + rec.buy) / all * 100).toFixed()
+                let sell = ((2 * rec.strongSell + rec.sell) / all * 100).toFixed()
+
                 let string = `<p>
             Время : ${rec.period}
         </p><p>
-            Нужно ли держать считают : <b>${rec.hold * 10}%</b> трейдеров 
+            Нужно ли держать считают : <b>${hold}%</b> трейдеров 
         </p><p>
-            За покупку : <b>${rec.strongBuy / rec.buy * 100}%</b> трейдеров
+            За покупку : <b>${buy}%</b> трейдеров
         </p><p>
-            За продажу : <b>${rec.strongSell / rec.sell * 100}%</b> трейдеров
+            За продажу : <b>${sell}%</b> трейдеров
         </p>`
 
                 recommedation.innerHTML = '';
@@ -219,10 +225,6 @@
                         value: Math.max(ema35[i], ema40[i], ema50[i], ema60[i])
                     })
                 }
-
-                console.log(ema_min)
-
-
 
                 const areaSeries = chart.addAreaSeries({
                     lineColor: 'rgba(67, 83, 254, 1)',
