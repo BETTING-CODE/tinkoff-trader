@@ -47,12 +47,13 @@ foreach ($instruments as $instrument) {
 
     $value = $instrument->getExpectedYieldValue();
     $currency = $instrument->getExpectedYieldCurrency();
+    $stock_name = $instrument->getTicker();
 
     $class_profit = ($value > 0) ? 'positive' : 'negative';
 
     echo '
         <tr>
-            <td>' . $instrument->getTicker() . '</td>
+            <td onclick=onClickStock("' . $stock_name . '") >' . $stock_name . '</td>
             <td>' . $instrument->getInstrumentType() . '</td>
             <td class='.$class_profit.'>' . $value . ' '.$currency.'</td>
         </tr>
